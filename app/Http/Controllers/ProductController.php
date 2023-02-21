@@ -17,9 +17,9 @@ class ProductController extends Controller
         $this->repositoty = new ProductRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->repositoty->index();
+        return $this->repositoty->index($request->all());
     }
 
     public function create(Request $request)

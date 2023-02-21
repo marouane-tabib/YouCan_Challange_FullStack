@@ -1,6 +1,5 @@
 <div class="card-body mt-3">
     <form action="{{ route('prduct.index') }}" method="get">
-        @method('get')
         <div class="row">
             <div class="col-2">
                 <div class="form-group">

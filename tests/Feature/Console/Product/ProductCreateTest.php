@@ -13,8 +13,11 @@ class ProductCreateTest extends TestCase
      */
     public function test_example(): void
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $this->artisan('product:create')
+        ->expectsQuestion('Product Name?', 'Testing Red T-shirt')
+        ->expectsQuestion('Product Description?', 'She held up the bowl to the window light and smiled her fakest smile yet')
+        ->expectsQuestion('Product Price?', 200)
+        ->expectsOutput('Product Created Successfully.')
+        ->assertExitCode(0);
     }
 }

@@ -13,7 +13,7 @@ class ProductRepository extends Repository
     }
 
     public function index(){
-        return view('Product.productIndex' , ['products' => $this->all()]);
+        return view('product.productIndex' , ['products' => $this->all()]);
     }
 
 }

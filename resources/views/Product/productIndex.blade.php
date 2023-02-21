@@ -9,6 +9,7 @@
 </head>
 <body>
     <section class="container">
+        @include('components.filter')
         @include('components.modal')
         @include('components.table')
     </section>

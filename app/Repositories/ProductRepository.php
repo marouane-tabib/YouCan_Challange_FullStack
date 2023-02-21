@@ -12,4 +12,8 @@ class ProductRepository extends Repository
         parent::__construct(new Product());
     }
 
+    public function index(){
+        return view('Product.productIndex' , ['products' => $this->all()]);
+    }
+
 }

@@ -29,9 +29,10 @@ class ProductCreate extends Command
         $data['name'] = $this->ask('Product Name?');
         $data['description'] = $this->ask('Product Description?');
         $data['price'] = $this->ask('Product Price?');
+        $data['category_id'] = 3;
 
-        $repository = new ProductRepository();
-        $repository->create($data);
+        $productRepository = new ProductRepository();
+        $productRepository->create($data);
 
         $this->info('Product Created Successfully.');
     }

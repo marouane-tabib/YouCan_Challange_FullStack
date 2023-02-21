@@ -22,6 +22,14 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         switch ($this->method()){
+            case 'GET' :
+            {
+                return [
+                    'sort_by' => 'nullable|string',
+                    'order_by' => 'nullable|string',
+                    'category_filter' => 'nullable|numeric',
+                ];
+            }
             case 'POST' :
             {
                 return [

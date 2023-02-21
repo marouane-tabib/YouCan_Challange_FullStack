@@ -11,14 +11,14 @@ class ProductCreate extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'product:create';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Use this command to create new product';
 
     /**
      * Execute the console command.

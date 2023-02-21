@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Http\Traits\ImageUploaderTrait;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
@@ -22,9 +23,9 @@ class ProductController extends Controller
         return $this->repository->index($request->all());
     }
 
-    public function create(Request $request)
+    public function create(ProductRequest $request)
     {
-        $request = $request->all();
+        $request = $request->validated();
         $request['image'] = $this->uploadImage($request['image']);
         return $this->repository->create($request);
     }

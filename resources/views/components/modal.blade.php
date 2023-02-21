@@ -18,27 +18,42 @@
                 <div class="mb-3">
                   <label for="image" class="col-form-label">Image:</label>
                   <input type="file" name="image" class="form-control" id="image">
+                  @error('image')
+                    <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
                 <div class="mb-3">
                   <label for="product-name" class="col-form-label">Product Name:</label>
-                  <input type="text" name="name" class="form-control" id="product-name" placeholder="Add Your Product Name">
+                  <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="product-name" placeholder="Add Your Product Name">
+                  @error('name')
+                    <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
                 <div class="mb-3">
                   <label for="description-text" class="col-form-label">Description:</label>
-                  <textarea name="description" class="form-control" id="description-text"></textarea>
+                  <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description-text"></textarea>
+                  @error('description')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
                 <div class="mb-3">
                   <label for="category" class="col-form-label">Category:</label>
-                  <select name="category_id" id="category" class="form-control">
+                  <select name="category_id" id="category" class="form-control @error('category') is-invalid @enderror">
                     <option value="" disabled selected>Select Category</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                   </select>
+                  @error('category_id')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
                 <div class="mb-3">
                   <label for="price" class="col-form-label">Price:</label>
-                  <input type="text" name="price" class="form-control" id="price" placeholder="Add Your Product Price">
+                  <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Add Your Product Price">
+                  @error('price')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
         </div>
         <div class="modal-footer">

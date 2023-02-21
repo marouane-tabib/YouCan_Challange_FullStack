@@ -24,6 +24,15 @@
                   <textarea name="description" class="form-control" id="description-text"></textarea>
                 </div>
                 <div class="mb-3">
+                  <label for="category" class="col-form-label">Category:</label>
+                  <select name="category_id" id="category" class="form-control">
+                    <option value="" disabled selected>Select Category</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="mb-3">
                   <label for="price" class="col-form-label">Price:</label>
                   <input type="text" name="price" class="form-control" id="price" placeholder="Add Your Product Price">
                 </div>

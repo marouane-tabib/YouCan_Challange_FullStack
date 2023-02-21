@@ -1,7 +1,6 @@
-<table class="table table-dark">
+<table class="table table-light shadow shadow-sm">
     <thead>
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Image</th>
         <th scope="col">Name</th>
         <th scope="col">Description</th>
@@ -12,7 +11,6 @@
     <tbody>
         @foreach ($products as $product)
             <tr>
-                <th scope="row">1</th>
                 <td><img height="55" width="80" src="{{ asset('storage/Image/'.$product->image) }}" alt=""></td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->description }}</td>

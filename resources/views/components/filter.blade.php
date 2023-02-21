@@ -24,7 +24,7 @@
                     <select name="category_filter" class="form-control">
                         <option value="" selected>Filter by</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ old('category_filter' , request()->input('category_filter')) == $category->name ? 'selected' : '' }}>{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" {{ old('category_filter' , request()->input('category_filter')) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>

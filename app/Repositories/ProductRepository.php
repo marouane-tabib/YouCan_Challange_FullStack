@@ -17,7 +17,7 @@ class ProductRepository extends Repository
     }
 
     public function index(array $filter = null){
-        $product = $this->filter($filter) ?: $this->all();
+        $product = $filter ? $this->filter($filter) : $this->all();
         return view('product.productIndex' , ['products' => $product, 'categories' => $this->category->all()]);
     }
 

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Client\Request;
 
 class ProductRepository extends Repository
 {
@@ -15,8 +16,9 @@ class ProductRepository extends Repository
         $this->category = new CategoryRepository();
     }
 
-    public function index(){
-        return view('product.productIndex' , ['products' => $this->all() , 'categories' => $this->category->all()]);
+    public function index(array $filter = null){
+        $product = $this->filter($filter) ?: $this->all();
+        return view('product.productIndex' , ['products' => $product, 'categories' => $this->category->all()]);
     }
 
 }

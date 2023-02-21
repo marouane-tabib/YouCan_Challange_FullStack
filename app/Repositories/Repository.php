@@ -20,7 +20,8 @@ class Repository implements RepositoriesInterface
         return $this->model->all();
     }
 
-    public function filter(array $filter){
+    public function filter(array $filter)
+    {
         return $this->model
                     ->when($filter['category_filter'] != '' , function($query) use ($filter){
                         $query->where('category_id', $filter['category_filter']);

@@ -7,7 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     @vite(['resources/sass/main.scss', 'resources/js/app.js'])
-    <title>@yield('title')</title>
+
+    <title>@yield('title' , 'Unknown')</title>
 </head>
 <body>
     <section class="container">

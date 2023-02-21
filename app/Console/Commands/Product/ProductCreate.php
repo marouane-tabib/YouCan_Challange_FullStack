@@ -4,9 +4,12 @@ namespace App\Console\Commands\Product;
 
 use App\Repositories\ProductRepository;
 use Illuminate\Console\Command;
+use App\Traits\CliValidator;
 
 class ProductCreate extends Command
 {
+    use CliValidator;
+
     /**
      * The name and signature of the console command.
      *
@@ -30,6 +33,11 @@ class ProductCreate extends Command
         $data['description'] = $this->ask('Product Description?');
         $data['price'] = $this->ask('Product Price?');
         $data['category_id'] = 3;
+
+        // $validator->validateInput('name', 'min:3', $name);
+        $this->validateInput('name', 'required|string|min:3|max:55', $data['name']);
+        $this->validateInput('description', 'required|string|min:10', $data['description']);
+        $this->validateInput('price', 'required|numeric|min:1', $data['price']);
 
         $productRepository = new ProductRepository();
         $productRepository->create($data);

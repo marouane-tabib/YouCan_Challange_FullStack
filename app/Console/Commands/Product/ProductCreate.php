@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Product;
 
+use App\Repositories\ProductRepository;
 use Illuminate\Console\Command;
 
 class ProductCreate extends Command
@@ -25,9 +26,13 @@ class ProductCreate extends Command
      */
     public function handle(): void
     {
-        $name = $this->ask('Product Name?');
-        $description = $this->ask('Product Description?');
-        $price = $this->ask('Product Price?');
+        $data['name'] = $this->ask('Product Name?');
+        $data['description'] = $this->ask('Product Description?');
+        $data['price'] = $this->ask('Product Price?');
+
+        $repository = new ProductRepository();
+        $repository->create($data);
+
         $this->info('Product Created Successfully.');
     }
 }

@@ -10,22 +10,22 @@ class ProductController extends Controller
 {
     use ImageUploaderTrait;
 
-    protected $repositoty;
+    protected $repository;
 
     public function __construct()
     {
-        $this->repositoty = new ProductRepository;
+        $this->repository = new ProductRepository;
     }
 
     public function index(Request $request)
     {
-        return $this->repositoty->index($request->all());
+        return $this->repository->index($request->all());
     }
 
     public function create(Request $request)
     {
         $request = $request->all();
         $request['image'] = $this->uploadImage($request['image']);
-        return $this->repositoty->create($request);
+        return $this->repository->create($request);
     }
 }

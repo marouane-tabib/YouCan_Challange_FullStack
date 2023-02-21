@@ -20,6 +20,15 @@ class Repository implements RepositoriesInterface
         return $this->model->all();
     }
 
+    public function filter(array $filter){
+        return $this->model
+                    ->when($filter['category_filter'] != '' , function($query) use ($filter){
+                        $query->where('category_id', $filter['category_filter']);
+                    })
+                    ->orderBy($filter['sort_by'] ?? 'id' , $filter['order_by'] ?? 'desc')
+                    ->get();
+    }
+
     public function create(array $data)
     {
         $this->model->create($data);

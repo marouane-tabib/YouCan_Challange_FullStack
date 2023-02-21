@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', []);
+Route::get('/', [ProductController::class, 'index'])->name('prduct.index');
+Route::post('/', [ProductController::class, 'create'])->name('Product.create');

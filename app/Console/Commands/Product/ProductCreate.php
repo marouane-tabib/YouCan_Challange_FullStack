@@ -25,6 +25,9 @@ class ProductCreate extends Command
      */
     public function handle(): void
     {
-        //
+        $name = $this->ask('Product Name?');
+        $description = $this->ask('Product Description?');
+        $price = $this->ask('Product Price?');
+        $this->info('Product Created Successfully.');
     }
 }

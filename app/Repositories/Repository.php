@@ -22,7 +22,8 @@ class Repository implements RepositoriesInterface
 
     public function create(array $data)
     {
-        return $this->model->create($data);
+        $this->model->create($data);
+        return redirect()->back();
     }
 
     public function update(int $id, array $data)

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
-use App\Http\Traits\ImageUploaderTrait;
+use App\Traits\ImageUploaderTrait;
 use App\Repositories\ProductRepository;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {

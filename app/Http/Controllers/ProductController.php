@@ -18,7 +18,7 @@ class ProductController extends Controller
         return $this->repositoty->index();
     }
 
-    public function create($id){
-        // 
+    public function create(Request $request){
+        return $this->repositoty->create($request->all());
     }
 }

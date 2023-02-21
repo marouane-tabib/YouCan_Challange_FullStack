@@ -13,7 +13,7 @@
         @foreach ($products as $product)
             <tr>
                 <th scope="row">1</th>
-                <td><img height="55" width="80" src="{{ asset('storage/'.$product->image) }}" alt=""></td>
+                <td><img height="55" width="80" src="{{ asset('storage/Image/'.$product->image) }}" alt=""></td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->description }}</td>
                 <td>{{ $product->price }}</td>

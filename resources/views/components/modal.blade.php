@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-primary my-3 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Launch demo modal
   </button>
 
@@ -11,10 +11,14 @@
           <h1 class="modal-title fs-5" id="exampleModalLabel">Add Product</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-            <form method="POST" action="{{ route('product.create') }}">
+            <form method="POST" action="{{ route('product.create') }}" enctype="multipart/form-data">
         <div class="modal-body">
                 @csrf
                 @method('POST')
+                <div class="mb-3">
+                  <label for="image" class="col-form-label">Image:</label>
+                  <input type="file" name="image" class="form-control" id="image">
+                </div>
                 <div class="mb-3">
                   <label for="product-name" class="col-form-label">Product Name:</label>
                   <input type="text" name="name" class="form-control" id="product-name" placeholder="Add Your Product Name">

@@ -8,9 +8,6 @@ use Tests\TestCase;
 
 class ReouteTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
     public function test_home_screen_shows_welcome()
     {
         $response = $this->get('/');

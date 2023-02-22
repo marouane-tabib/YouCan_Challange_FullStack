@@ -15,9 +15,9 @@ class Repository implements RepositoriesInterface
         $this->model = $model;
     }
 
-    public function all()
+    public function all(array $select = null)
     {
-        return $this->model->all();
+        return $this->model->all($select);
     }
 
     public function filter(array $filter)

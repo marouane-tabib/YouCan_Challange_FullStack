@@ -14,9 +14,17 @@ class ReouteTest extends TestCase
     public function test_home_screen_shows_welcome()
     {
         $response = $this->get('/');
+        $response->assertViewIs('product.index');
+        $response->assertOk();
+    }
 
-    $response->assertOk();
-    // $response->assertViewIs('users.show');
-    //     $response->assertViewHas('Products');
+    public function test_create_new_product(){
+        $response = $this->post('/',  [
+            'name' => "Testing fake name",
+            'description' => "Testing fake description...",
+            'price' => 443,
+            'category_id' => 4
+        ]);
+        $response->assertRedirect('/');
     }
 }

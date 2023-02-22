@@ -27,4 +27,18 @@ class ValidationTest extends TestCase
         $response->assertSee('The price field is required.');
         $response->assertSee('The category id field is required.');
     }
+
+    public function test_old_value_stays_in_form_after_validation_error()
+    {
+        $response = $this->followingRedirects()->post('/',  [
+            'description' => "Testing fake description...",
+            'price' => 443,
+            'category_id' => 4
+        ]);
+        $response->assertStatus(200);
+        $response->assertSee('The name field is required.');
+        $response->assertSee('Testing fake description...');
+        $response->assertSee(443);
+        $response->assertSee(5);
+    }
 }

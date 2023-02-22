@@ -17,4 +17,14 @@ class ValidationTest extends TestCase
         $response->assertSessionHasErrors('price')->assertStatus(302);
         $response->assertSessionHasErrors('category_id')->assertStatus(302);
     }
+
+    public function test_validation_errors_shown_in_blade()
+    {
+        $response = $this->followingRedirects()->post('/');
+        $response->assertStatus(200);
+        $response->assertSee('The name field is required.');
+        $response->assertSee('The description field is required.');
+        $response->assertSee('The price field is required.');
+        $response->assertSee('The category id field is required.');
+    }
 }

@@ -17,6 +17,8 @@ class ProductCreateTest extends TestCase
         ->expectsQuestion('Product Name?', 'Testing Red T-shirt')
         ->expectsQuestion('Product Description?', 'She held up the bowl to the window light and smiled her fakest smile yet')
         ->expectsQuestion('Product Price?', 200)
+        ->expectsOutput('Show All Categories.')
+        ->expectsQuestion('Choise Product Category With Id?', 2)
         ->expectsOutput('Product Created Successfully.')
         ->assertExitCode(0);
     }

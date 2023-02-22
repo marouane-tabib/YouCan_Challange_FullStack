@@ -22,6 +22,7 @@ class ValidationTest extends TestCase
     {
         $response = $this->followingRedirects()->post('/');
         $response->assertStatus(200);
+        $response->assertSee('The image field is required.');
         $response->assertSee('The name field is required.');
         $response->assertSee('The description field is required.');
         $response->assertSee('The price field is required.');
@@ -39,6 +40,20 @@ class ValidationTest extends TestCase
         $response->assertSee('The name field is required.');
         $response->assertSee('Testing fake description...');
         $response->assertSee(443);
-        $response->assertSee(5);
+    }
+
+    public function test_form_request_validation()
+    {
+        $response = $this->post('/');
+        $response->assertStatus(302);
+
+        $response = $this->post('/',  [
+            'image' => "default-img.jpg",
+            'name' => "Testing fake name",
+            'description' => "Testing fake description...",
+            'price' => 443,
+            'category_id' => 4
+        ]);
+        $response->assertRedirect('/');
     }
 }

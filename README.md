@@ -182,7 +182,7 @@ class ProductCreateTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
+    public function test_create_product(): void
     {
         $this->artisan('product:create')
         ->expectsQuestion('Product Name?', 'Testing Red T-shirt')

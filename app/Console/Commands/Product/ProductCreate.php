@@ -17,10 +17,10 @@ class ProductCreate extends Command
      * @var string
      */
     protected $signature = 'product:create
-                        {name? : Add product name}
-                        {description? : Add product description}
-                        {price? : Add product price}
-                        {category_id? : Add product category_id}
+                        {name? : Add product name.          [string|min:3|max:55]}
+                        {description? : Add product description.   [string|min:10]}
+                        {price? : Add product price.         [numeric|min:1]}
+                        {category_id? : Add product category_id.   [numeric]}
                         {--a|ask=true : Do not show any ask message }';
 
     /**
@@ -79,7 +79,7 @@ class ProductCreate extends Command
 
     public function validatore($data){
         $this->validateInput('name', 'required|string|min:3|max:55', $data['name']);
-        $this->validateInput('description', 'required|string|min:10', $data['description']);
+        $this->validateInput('description', 'required|string|min:10|max:5000', $data['description']);
         $this->validateInput('price', 'required|numeric|min:1', $data['price']);
         $this->validateInput('category_id', 'required|numeric|exists:categories,id', $data['category_id']);
     }

@@ -7,7 +7,7 @@ This project aims to create a product catalog with the ability to sort and filte
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Getting start](#getting-start)
-- [Authors](#authors) 
+- [Author](#author) 
 
 ## Features
 Create products via Laravel Artisan CLI. Filter by category and sort by price via view.
@@ -260,6 +260,11 @@ Command to run Artisan development server:
 ```bash
   php artisan serve
 ```
+
+
+## Author
+
+- [@marwan-tabib](https://github.com/marwan-tabib)
 
 
 

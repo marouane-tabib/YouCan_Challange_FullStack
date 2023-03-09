@@ -105,7 +105,7 @@ class ReouteTest extends TestCase
 }
 ```
 #### Validation Testing
-In [tests\Feature\ValidationTest.php](https://github.com/marwan-tabib/YouCan_Challange_FullStack/blob/74199186ab53df738fdfe9f4aa46d9b64940d2ff/tests/Feature/ValidationTest.php) write test for validatio form.
+In [tests\Feature\ValidationTest.php](https://github.com/marwan-tabib/YouCan_Challange_FullStack/blob/74199186ab53df738fdfe9f4aa46d9b64940d2ff/tests/Feature/ValidationTest.php) write test for validation form.
 ```command
 <?php
 

@@ -10,3 +10,10 @@ This project aims to create a product catalog with the ability to sort and filte
 - [Getting start](#getting-start)
 - [Authors](#authors) 
 
+## Requirements
+
+- [Git](https://git-scm.com/) : Git is a free and open source distributed version control system.
+- [Composer](https://getcomposer.org/) : is a tool for dependency management.
+- [Node.js](https://nodejs.org/en/) :  is a cross-platform, open-source server environment.
+
+

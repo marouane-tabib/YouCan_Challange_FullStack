@@ -16,4 +16,9 @@ This project aims to create a product catalog with the ability to sort and filte
 - [Composer](https://getcomposer.org/) : is a tool for dependency management.
 - [Node.js](https://nodejs.org/en/) :  is a cross-platform, open-source server environment.
 
+## Installation
 
+To install the project, first open to your work directory and use `git clone` clone it to your local machine. Then, use `composer install` to download the necessary PHP packages and `npm install` to download the required JavaScript packages. Once installed, run the `npm run build` command to bundle your application's assets, making them ready for production deployment.
+
+> **Note**
+> This is a note

@@ -32,6 +32,7 @@ class ProductCreate extends Command
 
     /**
      * Execute the console command.
+     * introuction , features ,requirements, installation, usage, author "(é er
      */
     public function handle(): void
     {

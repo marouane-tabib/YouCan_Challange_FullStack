@@ -3,12 +3,17 @@
 
 This project aims to create a product catalog with the ability to sort and filter by category or price. Each product has a name, description, price, image, and belongs to one or more categories. Categories have a name and can have a parent category. The system allows for product creation via web and command-line interfaces and ensures automated testing for product creation.
 
-## Roadmap
-
+- [Features](#features)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Getting start](#getting-start)
 - [Authors](#authors) 
+
+## Features
+Create products via Laravel Artisan CLI. Filter by category and sort by price via view.
+
+- Ability to create a product (from web and cli)
+- A listing products with ability to sort by price, or/and filter by a category (from web)
 
 ## Requirements
 
@@ -20,14 +25,9 @@ This project aims to create a product catalog with the ability to sort and filte
 
 To install the project, first open to your work directory and use `git clone` clone it to your local machine. Then, use `composer install` to download the necessary PHP packages and `npm install` to download the required JavaScript packages. Once installed, run the `npm run build` command to bundle your application's assets, making them ready for production deployment.
 
-> **Note**
-> This is a note
-
 ## Getting Start
 
-Here is mini-description
 - [Quick Start](#quick-start)
-- [Features](#features)
 - [Usage](#usage) 
 
 
@@ -64,12 +64,6 @@ In cases you want to interact with the Laravel Artisan CLI product create, use c
 | product price | `required, numeric, min:1`| 
 | product category_id | `required, numeric, id is exists in categories table`|
  
-## Features
-Create products via Laravel Artisan CLI. Filter by category and sort by price via view.
-
-- Ability to create a product (from web and cli)
-- A listing products with ability to sort by price, or/and filter by a category (from web)
-
 ## Usage 
 ### Testing
 Artisan command to run your tests:

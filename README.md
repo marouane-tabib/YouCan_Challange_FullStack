@@ -263,6 +263,8 @@ Command to run Artisan development server:
 ```bash
   php artisan serve
 ```
+Once you have started the Artisan development server, your application will be accessible in your web browser at `http://localhost:8000`.
+After this you can interact with the application.
 
 
 ## Author

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ReouteTest extends TestCase
+class RouteTest extends TestCase
 {
     public function test_home_screen_shows_welcome()
     {

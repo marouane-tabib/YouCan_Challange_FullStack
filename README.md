@@ -35,7 +35,7 @@ To install the project, first open to your work directory and use `git clone` cl
 
 
 ## Quick Start
-Next steps after installing the project, Start Laravel's local development server using the Laravel's Artisan CLI serve command `php artisan serve`, Once you have started the Artisan development server, your application will be accessible in your web browser at `http://localhost:8000`.
+Next steps after installing the project, Start Laravel's local development server using the Laravel's Artisan CLI serve command `php artisan serve`, Once you have started the Artisan development server, your application will be accessible in your web browser at `http://127.0.0.1:8000`.
 
 Ability to create a product using the laravel Artisan CLI:
 
@@ -263,7 +263,7 @@ Command to run Artisan development server:
 ```bash
   php artisan serve
 ```
-Once you have started the Artisan development server, your application will be accessible in your web browser at `http://localhost:8000`.
+Once you have started the Artisan development server, your application will be accessible in your web browser at `http://127.0.0.1:8000`.
 After this you can interact with the application.
 
 

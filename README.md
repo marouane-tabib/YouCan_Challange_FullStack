@@ -22,7 +22,7 @@ Create products via Laravel Artisan CLI. Filter by category and sort by price vi
 - [Node.js](https://nodejs.org/en/) :  is a cross-platform, open-source server environment.
 
 > **Note**
-> You can check requirements for laravel 10 and its versions using this link.
+> You can check requirements for laravel 10 and its versions using this [link](https://laravel.com/docs/10.x/upgrade#updating-dependencies).
 
 ## Installation
 

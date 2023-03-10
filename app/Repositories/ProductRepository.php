@@ -22,4 +22,13 @@ class ProductRepository extends Repository
         return view('product.index' , ['products' => $product, 'categories' => $this->category->all()]);
     }
 
+    public function filter(array $filter)
+    {
+        return Product::when($filter['category_filter'] != '' , function($query) use ($filter){
+                        $query->where('category_id', $filter['category_filter']);
+                    })
+                    ->orderBy($filter['sort_by'] ?? 'id' , $filter['order_by'] ?? 'desc')
+                    ->get();
+    }
+
 }

@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\SubCategory as ModelsSubCategory;
 
-class SubCategory extends Repository
+class SubCategoryRepository extends Repository
 {
 
     public function __construct()

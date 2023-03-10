@@ -55,8 +55,8 @@ In cases you want to interact with the Laravel Artisan CLI product create, use c
 ```command
   php artisan product:create
 ```
-#### Outputs:
-| Ask | Output |
+#### Inputs:
+| Ask | Input |
 | :-------- | :------------------------- |
 | product name | `string, min:3, max:55`| 
 | product description | `required, string, min:10, max:5000`| 

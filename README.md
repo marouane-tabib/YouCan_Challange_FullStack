@@ -64,6 +64,13 @@ In cases you want to interact with the Laravel Artisan CLI product create, use c
 | product category_id | `required, numeric, id is exists in categories table`|
  
 ## Usage 
+
+- [Testing](#testing)
+- [Route Testing](#route-testing)
+- [Validation Testing](#validation-testing)
+- [Console Testing](#console-testing)
+- [Artisan CLI](#artisan-cli) 
+
 ### Testing
 Artisan command to run your tests:
 ```command
@@ -263,6 +270,168 @@ Command to run Artisan development server:
 Once you have started the Artisan development server, your application will be accessible in your web browser at `http://127.0.0.1:8000`.
 After this you can interact with the application.
 
+### Logic
+#### Interfaces - RepositoriesInterface
+in [app\Http\Interfaces\RepositoriesInterface.php](https://github.com/marwan-tabib/YouCan_Challange_FullStack/blob/42ba367dac3f0bbd90493a5ab67d7f7242273a69/app/Http/Interfaces/RepositoriesInterface.php) can you config it:
+```interface
+<?php
+
+namespace App\Http\Interfaces;
+
+interface RepositoriesInterface
+{
+    public function all();
+
+    public function create(array $data);
+
+    public function update(int $id , array $data);
+
+    public function destroy(int $id);
+}
+
+```
+
+#### Repositories - Repository
+in [app\Repositories\Repository.php](https://github.com/marwan-tabib/YouCan_Challange_FullStack/blob/42ba367dac3f0bbd90493a5ab67d7f7242273a69/app/Repositories/Repository.php) can you config it:
+```interface
+<?php
+
+namespace App\Repositories;
+
+use App\Http\Interfaces\RepositoriesInterface;
+use Illuminate\Database\Eloquent\Model;
+
+class Repository implements RepositoriesInterface
+{
+
+    protected $model;
+
+    public function __construct(Model $model)
+    {
+        $this->model = $model;
+    }
+
+    public function all(array $select = [])
+    {
+        return $select ? $this->model->all($select) : $this->model->all();
+    }
+
+    public function create(array $data)
+    {
+        $this->model->create($data);
+        return redirect()->back();
+    }
+
+    public function update(int $id, array $data)
+    {
+        $record = $this->model->find($id);
+        return $record->update([$data]);
+    }
+
+    public function destroy(int $id)
+    {
+        $record = $this->model->find($id);
+        return $record->delete();
+    }
+}
+```
+
+#### Repositories - ProductRepository
+in [app\Repositories\ProductRepository.php](https://github.com/marwan-tabib/YouCan_Challange_FullStack/blob/42ba367dac3f0bbd90493a5ab67d7f7242273a69/app/Repositories/ProductRepository.php) can you config it:
+```repository
+<?php
+
+namespace App\Http\Interfaces;
+
+interface RepositoriesInterface
+{
+    public function all();
+
+    public function create(array $data);
+
+    public function update(int $id , array $data);
+
+    public function destroy(int $id);
+}
+
+```
+
+#### Repositories - CategoryRepository
+in [app\Repositories\CategoryRepository.php](https://github.com/marwan-tabib/YouCan_Challange_FullStack/blob/42ba367dac3f0bbd90493a5ab67d7f7242273a69/app/Repositories/CategoryRepository.php) can you config it:
+```repository
+<?php
+
+namespace App\Repositories;
+
+use App\Models\Category;
+
+class CategoryRepository extends Repository
+{
+
+    public function __construct()
+    {
+        parent::__construct(new Category());
+    }
+
+}
+
+```
+
+#### Repositories - SubCategoryRepository
+in [app\Repositories\SubCategoryRepository.php](https://github.com/marwan-tabib/YouCan_Challange_FullStack/blob/42ba367dac3f0bbd90493a5ab67d7f7242273a69/app/Repositories/SubCategoryRepository.php) can you config it:
+```repository
+<?php
+
+namespace App\Repositories;
+
+use App\Models\SubCategory as ModelsSubCategory;
+
+class SubCategoryRepository extends Repository
+{
+
+    public function __construct()
+    {
+        parent::__construct(new ModelsSubCategory());
+    }
+
+}
+```
+
+#### Controllers - ProductController
+in [app\Http\Controllers\ProductController.php](https://github.com/marwan-tabib/YouCan_Challange_FullStack/blob/42ba367dac3f0bbd90493a5ab67d7f7242273a69/app/Http/Controllers/ProductController.php) can you config it:
+```controller
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\ProductRequest;
+use App\Traits\ImageUploaderTrait;
+use App\Repositories\ProductRepository;
+
+class ProductController extends Controller
+{
+    use ImageUploaderTrait;
+
+    protected $repository;
+
+    public function __construct()
+    {
+        $this->repository = new ProductRepository;
+    }
+
+    public function index(ProductRequest $request)
+    {
+        return $this->repository->index($request->all());
+    }
+
+    public function create(ProductRequest $request)
+    {
+        $request = $request->validated();
+        $request['image'] = $this->uploadImage($request['image']);
+        return $this->repository->create($request);
+    }
+}
+```
 ## Author
 - [@marwan-tabib](https://github.com/marwan-tabib)
 

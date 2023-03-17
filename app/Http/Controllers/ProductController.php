@@ -27,8 +27,8 @@ class ProductController extends Controller
 
     public function create(ProductRequest $request)
     {
-        // $request = $request->validated();
-        // $request['image'] = $this->uploadImage($request['image']);
-        // return $this->repository->create($request);
+        $request = $request->validated();
+        $request['image'] = $this->uploadImage($request['image']);
+        return $this->productRepository->create($request);
     }
 }

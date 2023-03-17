@@ -8,4 +8,6 @@ interface ProductRepositoryInterface
 
     public function create(array $data);
 
+    public function filter(array $filter);
+    
 }

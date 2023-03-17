@@ -2,24 +2,21 @@
 
 namespace App\Repositories;
 
+use App\Http\Interfaces\ProductRepositoryInterface;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Client\Request;
 
-class ProductRepository extends Repository
+class ProductRepository implements ProductRepositoryInterface
 {
-    protected $category;
 
-    public function __construct()
-    {
-        parent::__construct(new Product());
-        $this->category = new CategoryRepository();
+    public function all(){
+        return Product::all();
     }
 
-    public function index(array $filter = null)
-    {
-        $product = $filter ? $this->filter($filter) : $this->all();
-        return view('product.index' , ['products' => $product, 'categories' => $this->category->all()]);
+    public function create(array $data){
+        Product::create($data);
+        return redirect()->back();
     }
 
     public function filter(array $filter)

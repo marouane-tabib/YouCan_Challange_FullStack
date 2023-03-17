@@ -28,14 +28,12 @@ class Repository implements RepositoriesInterface
 
     public function update(int $id, array $data)
     {
-        $record = $this->model->find($id);
-        return $record->update([$data]);
+        return $this->model->find($id)->update([$data]);
     }
 
     public function destroy(int $id)
     {
-        $record = $this->model->find($id);
-        return $record->delete();
+        return $this->model->find($id)->delete();
     }
 }
 

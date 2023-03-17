@@ -30,7 +30,7 @@
             </div>
 
             <div class="col-1">
-                <button type="submit" name="filter" class="btn btn-info">Search</button>
+                <button type="submit" name="filter" value="search" class="btn btn-info">Search</button>
             </div>
         </div>
     </form>

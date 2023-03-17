@@ -20,7 +20,7 @@ class ProductController extends Controller
 
     public function index(ProductRequest $request)
     {
-         $product = $request->filter ? $this->productRepository->filter($request->toArray()) : $this->productRepository->all();
+        $product = $request->filter ? $this->productRepository->filter($request->toArray()) : $this->productRepository->all();
         $categories = Category::all();
         return view('product.index', ['products' => $product, 'categories' => $categories]);
     }

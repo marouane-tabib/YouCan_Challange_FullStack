@@ -14,12 +14,12 @@ class ProductCreateTest extends TestCase
     public function test_product_create(): void
     {
         $this->artisan('product:create')
-        ->expectsQuestion('Product Name?', 'Testing Red T-shirt')
-        ->expectsQuestion('Product Description?', 'She held up the bowl to the window light and smiled her fakest smile yet')
-        ->expectsQuestion('Product Price?', 200)
+        ->expectsQuestion('Add Your Product name', 'Testing Red T-shirt')
+        ->expectsQuestion('Add Your Product description', 'She held up the bowl to the window light and smiled her fakest smile yet')
+        ->expectsQuestion('Add Your Product price', 200)
         ->expectsOutput('Show All Categories.')
-        ->expectsQuestion('Choise Product Category With Id?', 2)
-        ->expectsOutput('Product Created Successfully.')
+        ->expectsQuestion('Add Your Product category_id', 2)
+        ->expectsOutput('Product created successfully!')
         ->assertExitCode(0);
     }
 }

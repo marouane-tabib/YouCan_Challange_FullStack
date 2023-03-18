@@ -49,49 +49,20 @@ class ProductCreateCommand extends Command
      */
     public function handle(): void
     {
-
         $categories = $this->categoryRepository->all(['id', 'name']);
         foreach($this->arguments() as $key => $argument){
             if($key === "category_id"){
                 // Product category
                 $this->argument('category_id') ?? $this->info('Show All Categories.');
                 $this->argument('category_id') ?? $this->table(['id', 'name'] , $categories);
-                // $data[$key] =  $this->argument($key) ?: $this->ask(': Product Category With Id?');
             }
             $data[$key] = $this->argument($key) ?: $this->ask('Add Your Product '.$key);
         }
         // Validation
-        $this->validatore($data);
+        $validation = $this->validatore($data);
         // Careate Product
-        $this->productRepository->create($data);
-        dd($this->arguments(), $data);
-        // if($this->option('ask') === "true"){
-        //     // Product name, description, price
-        //     $data['name'] = $this->argument('name') ?: $this->ask('Product Name?');
-        //     $data['description'] =  $this->argument('description') ?: $this->ask('Product Description?');
-        //     $data['price'] =  $this->argument('price') ?: $this->ask('Product Price?');
-
-        //     // Product category
-        //     $this->argument('category_id') ?? $this->info('Show All Categories.');
-        //     $this->argument('category_id') ?? $this->table(['id', 'name'] , $categories);
-        //     $data['category_id'] =  $this->argument('category_id') ?: $this->ask('Choise Product Category With Id?');
-
-        //     // Message
-        //     $this->info('Product Created Successfully.');
-        // }else{
-        //     // Product Arguments
-        //     $data['name'] = $this->argument('name');
-        //     $data['description'] =  $this->argument('description');
-        //     $data['price'] =  $this->argument('price');
-        //     $data['category_id'] =  $this->argument('category_id');
-
-        //     // Message
-        //     $this->info('Product Created Successfully.');
-        // // }
-        // // Validation
-        // $this->validatore($data);
-        // // Careate Product
-        // $this->productRepository->create($data);
+        $validation ?: $this->productRepository->create($data);
+        $this->info('Product created successfully!');
     }
 
     public function validatore($data){

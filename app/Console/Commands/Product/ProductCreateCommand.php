@@ -4,8 +4,6 @@ namespace App\Console\Commands\Product;
 
 use App\Http\Interfaces\CategoryRepositoryInterface;
 use App\Http\Interfaces\ProductRepositoryInterface;
-use App\Repositories\CategoryRepository;
-use App\Repositories\ProductRepository;
 use Illuminate\Console\Command;
 use App\Traits\CliValidator;
 

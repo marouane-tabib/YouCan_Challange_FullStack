@@ -38,7 +38,7 @@ class ProductCreate extends Command
     {
         $categoryRepository = new CategoryRepository();
         $categories = $categoryRepository->all(['id', 'name']);
-
+// searche how to get all aking values in the same array
         if($this->option('ask') === "true"){
             // Product name, description, price
             $data['name'] = $this->argument('name') ?: $this->ask('Product Name?');

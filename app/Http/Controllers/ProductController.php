@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Interfaces\CategoryRepositoryInterface;
 use App\Http\Interfaces\ProductRepositoryInterface;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
@@ -12,16 +13,18 @@ class ProductController extends Controller
     use ImageUploaderTrait;
 
     protected ProductRepositoryInterface $productRepository;
+    protected CategoryRepositoryInterface $categoryRepository;
 
-    public function __construct(ProductRepositoryInterface $productRepository)
-    {
+    public function __construct(ProductRepositoryInterface $productRepository, CategoryRepositoryInterface $categoryRepository)
+    {                
         $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function index(ProductRequest $request)
     {
         $product = $request->filter ? $this->productRepository->filter($request->toArray()) : $this->productRepository->all();
-        $categories = Category::all();
+        $categories = $this->categoryRepository->all(['id', 'name']);
         return view('product.index', ['products' => $product, 'categories' => $categories]);
     }
 

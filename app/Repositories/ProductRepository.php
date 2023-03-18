@@ -15,6 +15,7 @@ class ProductRepository implements ProductRepositoryInterface
     {
         $this->product = $product;
     }
+    
     public function all(){
         return $this->product::all();
     }

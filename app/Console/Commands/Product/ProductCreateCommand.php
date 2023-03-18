@@ -50,19 +50,21 @@ class ProductCreateCommand extends Command
     public function handle(): void
     {
         $categories = $this->categoryRepository->all(['id', 'name']);
+
         foreach($this->arguments() as $key => $argument){
             if($key === "category_id"){
-                // Product category
                 $this->argument('category_id') ?? $this->info('Show All Categories.');
                 $this->argument('category_id') ?? $this->table(['id', 'name'] , $categories);
             }
             $data[$key] = $this->argument($key) ?: $this->ask('Add Your Product '.$key);
         }
+
         // Validation
-        $validation = $this->validatore($data);
+            $validation = $this->validatore($data);
         // Careate Product
-        $validation ?: $this->productRepository->create($data);
-        $this->info('Product created successfully!');
+            $validation ?: $this->productRepository->create($data);
+        // Create Message
+            $this->info('Product created successfully!');
     }
 
     public function validatore($data){

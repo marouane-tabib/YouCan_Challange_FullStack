@@ -2,14 +2,26 @@
 
 namespace App\Console\Commands\Product;
 
+use App\Http\Interfaces\CategoryRepositoryInterface;
+use App\Http\Interfaces\ProductRepositoryInterface;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Console\Command;
 use App\Traits\CliValidator;
 
-class ProductCreate extends Command
+class ProductCreateCommand extends Command
 {
     use CliValidator;
+
+    protected ProductRepositoryInterface $productRepository;
+    protected CategoryRepositoryInterface $categoryRepository;
+
+    public function __construct(ProductRepositoryInterface $productRepository, CategoryRepositoryInterface $categoryRepository)
+    {
+        parent::__construct(
+        $this->productRepository = $productRepository,
+        $this->categoryRepository = $categoryRepository);
+    }
 
     /**
      * The name and signature of the console command.
@@ -33,12 +45,15 @@ class ProductCreate extends Command
     /**
      * Execute the console command.
      * introuction , features ,requirements, installation, usage, author "(é er
+     * les argument and le asking question => the same thing
+     *
      */
     public function handle(): void
     {
-        $categoryRepository = new CategoryRepository();
-        $categories = $categoryRepository->all(['id', 'name']);
-// searche how to get all aking values in the same array
+        // $categoryRepository = new CategoryRepository();
+        $categories = $this->categoryRepository->all(['id', 'name']);
+        // dd($this->arguments());
+// searche how to get all asking values in the same array
         if($this->option('ask') === "true"){
             // Product name, description, price
             $data['name'] = $this->argument('name') ?: $this->ask('Product Name?');
@@ -50,13 +65,6 @@ class ProductCreate extends Command
             $this->argument('category_id') ?? $this->table(['id', 'name'] , $categories);
             $data['category_id'] =  $this->argument('category_id') ?: $this->ask('Choise Product Category With Id?');
 
-            // Validation
-            $this->validatore($data);
-
-            // Careate Product
-            $productRepository = new ProductRepository();
-            $productRepository->create($data);
-
             // Message
             $this->info('Product Created Successfully.');
         }else{
@@ -67,15 +75,21 @@ class ProductCreate extends Command
             $data['category_id'] =  $this->argument('category_id');
 
             // Validation
-            $this->validatore($data);
+            // $this->validatore($data);
 
-            // Careate Product
-            $productRepository = new ProductRepository();
-            $productRepository->create($data);
+            // // Careate Product
+            // $productRepository = new ProductRepository();
+            // $productRepository->create($data);
 
             // Message
             $this->info('Product Created Successfully.');
         }
+        // Validation
+        $this->validatore($data);
+
+        // Careate Product
+        // $productRepository = new ProductRepository();
+        $this->productRepository->create($data);
     }
 
     public function validatore($data){

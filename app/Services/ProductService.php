@@ -31,7 +31,8 @@ class ProductService
     public function create(ProductRequest $request)
     {
         $request = $request->validated();
-        $request['image'] = $this->uploadImage($request['image']);
-        return $this->productRepository->create($request);
+        if(isset($request['image'])){ $request['image'] = $this->uploadImage($request['image']); }
+        $this->productRepository->create($request);
+        return redirect()->back();
     }
 }

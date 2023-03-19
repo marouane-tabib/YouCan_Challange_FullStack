@@ -4,6 +4,8 @@ namespace App\Console\Commands\Product;
 
 use App\Http\Interfaces\CategoryRepositoryInterface;
 use App\Http\Interfaces\ProductRepositoryInterface;
+use App\Services\CategoryService;
+use App\Services\ProductService;
 use Illuminate\Console\Command;
 use App\Traits\CliValidator;
 
@@ -11,14 +13,15 @@ class ProductCreateCommand extends Command
 {
     use CliValidator;
 
-    protected ProductRepositoryInterface $productRepository;
-    protected CategoryRepositoryInterface $categoryRepository;
+    protected ProductService $productService;
+    protected CategoryService $categoryService;
 
-    public function __construct(ProductRepositoryInterface $productRepository, CategoryRepositoryInterface $categoryRepository)
+    public function __construct(ProductService $productService, CategoryService $categoryService)
     {
         parent::__construct(
-        $this->productRepository = $productRepository,
-        $this->categoryRepository = $categoryRepository);
+            $this->productService = $productService,
+            $this->categoryService = $categoryService
+        );
     }
 
     /**
@@ -47,7 +50,7 @@ class ProductCreateCommand extends Command
      */
     public function handle(): void
     {
-        $categories = $this->categoryRepository->all(['id', 'name']);
+        $categories = $this->categoryService->all(['id', 'name']);
 
         foreach($this->arguments() as $key => $argument){
             if($key === "category_id"){
@@ -60,7 +63,7 @@ class ProductCreateCommand extends Command
         // Validation
             $validation = $this->validatore($data);
         // Careate Product
-            $validation ?: $this->productRepository->create($data);
+            $validation ?: $this->productService->create($data);
         // Create Message
             $this->info('Product created successfully!');
     }

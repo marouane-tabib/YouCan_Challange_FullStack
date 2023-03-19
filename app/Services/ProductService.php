@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Http\Interfaces\CategoryRepositoryInterface;
 use App\Http\Interfaces\ProductRepositoryInterface;
-use App\Http\Requests\ProductRequest;
 use App\Traits\ImageUploaderTrait;
 
 class ProductService
@@ -21,16 +20,15 @@ class ProductService
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function index(ProductRequest $request)
+    public function all(object $data)
     {
-        $product = $request->filter ? $this->productRepository->filter($request->toArray()) : $this->productRepository->all();
-        $categories = $this->categoryRepository->all(['id', 'name']);
-        return view('product.index', ['products' => $product, 'categories' => $categories]);
+        $product = $data->filter ? $this->productRepository->filter($data->toArray()) : $this->productRepository->all();
+        return $product;
     }
 
-    public function create(ProductRequest $request)
+    public function create(object $data)
     {
-        $request = $request->validated();
+        $request = $data->validated();
         $request['image'] = $this->uploadImage($request['image']);
         return $this->productRepository->create($request);
     }

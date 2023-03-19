@@ -21,8 +21,7 @@ class ProductRepository implements ProductRepositoryInterface
     }
 
     public function create(array $data){
-        $this->product::create($data);
-        return redirect()->back();
+        return $this->product::create($data);
     }
 
     public function filter(array $filter)

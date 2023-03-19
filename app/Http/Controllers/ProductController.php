@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductRequest;
 use App\Services\CategoryService;
 use App\Services\ProductService;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -18,17 +18,15 @@ class ProductController extends Controller
         $this->categoryService = $categoryService;
     }
 
-    public function index(ProductRequest $request)
+    public function index(Request $request)
     {
-        $product = $this->productService->all($request);
-        $categories = $this->categoryService->all(['id', 'name']);
+        $product = $request->filter ? $this->productService->filter($request) : $this->productService->all();
+        $categories = $this->categoryService->all();
         return view('product.index', ['products' => $product, 'categories' => $categories]);
     }
 
-    public function create(ProductRequest $request)
+    public function create(Request $request)
     {
-        $request = $request->validated();
-        $request['image'] = $this->uploadImage($request['image']);
         return $this->productService->create($request);
     }
 }

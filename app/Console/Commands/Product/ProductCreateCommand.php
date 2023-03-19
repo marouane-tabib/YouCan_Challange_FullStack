@@ -2,8 +2,6 @@
 
 namespace App\Console\Commands\Product;
 
-use App\Http\Interfaces\CategoryRepositoryInterface;
-use App\Http\Interfaces\ProductRepositoryInterface;
 use App\Services\CategoryService;
 use App\Services\ProductService;
 use Illuminate\Console\Command;

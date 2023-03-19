@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Http\Interfaces\CategoryRepositoryInterface;
 use App\Http\Interfaces\ProductRepositoryInterface;
 use App\Traits\ImageUploaderTrait;
 
@@ -12,12 +11,10 @@ class ProductService
     use ImageUploaderTrait;
 
     protected ProductRepositoryInterface $productRepository;
-    protected CategoryRepositoryInterface $categoryRepository;
 
-    public function __construct(ProductRepositoryInterface $productRepository, CategoryRepositoryInterface $categoryRepository)
+    public function __construct(ProductRepositoryInterface $productRepository)
     {
         $this->productRepository = $productRepository;
-        $this->categoryRepository = $categoryRepository;
     }
 
     public function all(object $data)

@@ -52,12 +52,16 @@ class ProductCreateCommand extends Command
     {
         $categories = $this->categoryService->all(['id', 'name']);
 
-        foreach($this->arguments() as $key => $argument){
-            if($key === "category_id"){
-                $this->argument('category_id') ?? $this->info('Show All Categories.');
-                $this->argument('category_id') ?? $this->table(['id', 'name'] , $categories);
+        if($this->option('ask') === "true"){
+            foreach($this->arguments() as $key => $argument){
+                if($key === "category_id"){
+                    $this->argument('category_id') ?? $this->info('Show All Categories.');
+                    $this->argument('category_id') ?? $this->table(['id', 'name'] , $categories);
+                }
+                $data[$key] = $this->argument($key) ?: $this->ask('Add Your Product '.$key);
             }
-            $data[$key] = $this->argument($key) ?: $this->ask('Add Your Product '.$key);
+        }else{
+            $data = $this->arguments();
         }
 
         // Validation

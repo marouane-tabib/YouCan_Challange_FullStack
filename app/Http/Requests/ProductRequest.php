@@ -33,7 +33,7 @@ class ProductRequest extends FormRequest
             case 'POST' :
             {
                 return [
-                    'image' => 'required|image|max:7024',
+                    'image' => 'nullable|image|max:7024',
                     'name' => 'required|string|min:3|max:55',
                     'description' => 'required|string|min:10',
                     'category_id' => 'required|exists:categories,id',

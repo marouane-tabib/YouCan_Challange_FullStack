@@ -3,9 +3,7 @@
 namespace App\Repositories;
 
 use App\Http\Interfaces\ProductRepositoryInterface;
-use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Client\Request;
 
 class ProductRepository implements ProductRepositoryInterface
 {
@@ -32,5 +30,4 @@ class ProductRepository implements ProductRepositoryInterface
                     ->orderBy($filter['sort_by'] ?? 'id' , $filter['order_by'] ?? 'desc')
                     ->get();
     }
-
 }

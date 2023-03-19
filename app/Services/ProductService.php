@@ -7,7 +7,6 @@ use App\Traits\ImageUploaderTrait;
 
 class ProductService
 {
-
     use ImageUploaderTrait;
 
     protected ProductRepositoryInterface $productRepository;

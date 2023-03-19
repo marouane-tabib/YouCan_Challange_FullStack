@@ -6,7 +6,6 @@ use App\Http\Interfaces\CategoryRepositoryInterface;
 
 class CategoryService
 {
-
     protected CategoryRepositoryInterface $categoryRepository;
 
     public function __construct(CategoryRepositoryInterface $categoryRepository)

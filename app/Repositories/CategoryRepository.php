@@ -7,7 +7,6 @@ use App\Models\Category;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
-
     protected Category $category;
 
     public function __construct(Category $category)
@@ -18,5 +17,4 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function all(array $select = []){
         return $this->category::all($select);
     }
-
 }

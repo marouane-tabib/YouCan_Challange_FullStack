@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Http\Interfaces\ProductRepositoryInterface;
-use App\Http\Requests\ProductRequest;
 use App\Traits\ImageUploaderTrait;
 
 class ProductService
@@ -23,16 +22,15 @@ class ProductService
         return $this->productRepository->all();
     }
 
-    public function filter(ProductRequest $request)
+    public function filter(array $data)
     {
-        return $this->productRepository->filter($request->toArray());
+        return $this->productRepository->filter($data);
     }
 
-    public function create(ProductRequest $request)
+    public function create(array $data)
     {
-        $request = $request->validated();
-        if(isset($request['image'])){ $request['image'] = $this->uploadImage($request['image']); }
-        $this->productRepository->create($request);
+        if(isset($data['image'])){ $data['image'] = $this->uploadImage($data['image']); }
+        $this->productRepository->create($data);
         return redirect()->back();
     }
 }

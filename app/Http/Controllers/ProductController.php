@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Services\CategoryService;
 use App\Services\ProductService;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -21,13 +20,13 @@ class ProductController extends Controller
 
     public function index(ProductRequest $request)
     {
-        $product = $request->filter ? $this->productService->filter($request) : $this->productService->all();
+        $product = $request->filter ? $this->productService->filter($request->toArray()) : $this->productService->all();
         $categories = $this->categoryService->all();
         return view('product.index', ['products' => $product, 'categories' => $categories]);
     }
 
     public function create(ProductRequest $request)
     {
-        return $this->productService->create($request);
+        return $this->productService->create($request->toArray());
     }
 }

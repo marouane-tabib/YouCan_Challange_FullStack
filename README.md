@@ -6,6 +6,7 @@ This project aims to create a product catalog with the ability to sort and filte
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Getting start](#getting-start)
+- [Project Structure](#project-structure)
 - [Author](#author) 
 
 ## Features

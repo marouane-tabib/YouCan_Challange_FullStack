@@ -2,12 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Models\SubCategory as ModelsSubCategory;
+use App\Http\Interfaces\SubCategoryRepositoryInterface;
+use App\Models\SubCategory;
 
-class SubCategoryRepository extends Repository
+class CategoryRepository implements SubCategoryRepositoryInterface
 {
-    public function __construct()
+    protected SubCategory $subCategory;
+
+    public function __construct(SubCategory $subCategory)
     {
-        parent::__construct(new ModelsSubCategory());
+        $this->subCategory = $subCategory;
+    }
+
+    public function all(array $select = []){
+        return $this->subCategory::all($select);
     }
 }

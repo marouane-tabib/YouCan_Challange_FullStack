@@ -14,7 +14,10 @@ class ProductCreateCommand extends Command
     protected ProductService $productService;
     protected CategoryService $categoryService;
 
-    public function __construct(ProductService $productService, CategoryService $categoryService)
+    public function __construct(
+        ProductService $productService,
+        CategoryService $categoryService
+    )
     {
         parent::__construct(
             $this->productService = $productService,
@@ -52,13 +55,13 @@ class ProductCreateCommand extends Command
 
         if($this->option('ask') === "true"){
             foreach($this->arguments() as $key => $argument){
-                if($key === "category_id"){
+                if ($key === "category_id") {
                     $this->argument('category_id') ?? $this->info('Show All Categories.');
                     $this->argument('category_id') ?? $this->table(['id', 'name'] , $categories);
                 }
                 $data[$key] = $this->argument($key) ?: $this->ask('Add Your Product '.$key);
             }
-        }else{
+        }else {
             $data = $this->arguments();
         }
 

@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Http\Interfaces\SubCategoryRepositoryInterface;
 use App\Models\SubCategory;
 
-class CategoryRepository implements SubCategoryRepositoryInterface
+class SubCategoryRepository implements SubCategoryRepositoryInterface
 {
     protected SubCategory $subCategory;
 

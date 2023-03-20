@@ -435,6 +435,7 @@ class ProductController extends Controller
 - [Route Testing](#route-testing)
 - [Validation Testing](#validation-testing)
 - [Console Testing](#console-testing)
+
 Artisan command to run your tests:
 ```command
   php artisan test
@@ -573,7 +574,7 @@ Once you have started the Artisan development server, your application will be a
 After this you can interact with the application.
 
 
-#### Artisan CLI
+### Artisan CLI
 Command to run Laravel Artisan CLI to create product with arguments:
 
 ```command

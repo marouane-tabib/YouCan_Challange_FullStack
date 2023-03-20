@@ -28,7 +28,9 @@ class ProductService
 
     public function create(array $data)
     {
-        if(isset($data['image'])){ $data['image'] = $this->uploadImage($data['image']); }
+        if (isset($data['image'])) { 
+            $data['image'] = $this->uploadImage($data['image']);
+        }
         $this->productRepository->create($data);
         return redirect()->back();
     }

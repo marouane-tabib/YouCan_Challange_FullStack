@@ -24,10 +24,11 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function filter(array $filter)
     {
-        return $this->product::when($filter['category_filter'] != '' , function($query) use ($filter){
-                        $query->where('category_id', $filter['category_filter']);
-                    })
-                    ->orderBy($filter['sort_by'] ?? 'id' , $filter['order_by'] ?? 'desc')
+        return $this->product::when(
+                        $filter['category_filter'] != '', function($query) use ($filter){
+                            $query->where('category_id', $filter['category_filter']);
+                        }
+                    )->orderBy($filter['sort_by'] ?? 'id' , $filter['order_by'] ?? 'desc')
                     ->get();
     }
 }

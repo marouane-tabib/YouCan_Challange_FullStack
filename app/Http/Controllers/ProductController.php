@@ -8,7 +8,6 @@ use App\Services\ProductService;
 
 class ProductController extends Controller
 {
-
     protected ProductService $productService;
     protected CategoryService $categoryService;
 
